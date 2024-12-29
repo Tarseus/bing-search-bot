@@ -30,7 +30,16 @@
    conda env create -f environment.yml
    ```
 
-5. 运行主程序（需要在bing-search-bot路径下执行此命令）：
+5. 启动虚拟环境：
+
+   ```bash
+   conda activate ms_rewards
+   ```
+
+   
+
+6. 运行主程序（需要在bing-search-bot路径下执行此命令）：
+
    ```
    python src/main.py
    ```
