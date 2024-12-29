@@ -1,0 +1,8 @@
+{
+    "username": "username@email.com",
+    "password": "password",
+    "wait_time":{
+        "min": 2,
+        "max": 5
+    }
+}
