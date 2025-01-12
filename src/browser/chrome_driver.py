@@ -10,7 +10,7 @@ from utils.logger import Logger
 from utils.utils import *
 
 class ChromeDriver:
-    def __init__(self, chrome_options = None, executable_path = None):
+    def __init__(self, chrome_options = None, executable_path = None, mobile_emulation = None):
         self.logger = Logger("ChromeDriver")
         if chrome_options is None:
             chrome_options = Options()
@@ -24,6 +24,8 @@ class ChromeDriver:
             chrome_options.add_argument("--disable-software-rasterizer")
             chrome_options.add_argument("--log-level=3")
             chrome_options.add_argument("--disable-web-security")
+        if mobile_emulation is not None:
+            chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
         if executable_path is None:
             executable_path = "D:\\Tools\\anaconda3\\chromedriver.exe"
         service = Service(executable_path)
@@ -117,7 +119,8 @@ class ChromeDriver:
                 screen_height = self.driver.execute_script("return window.innerHeight;")
                 min_position = max(0, current_position - screen_height)
                 max_position = min(total_height, current_position + screen_height)
-                scroll_position = random.randint(min_position, max_position)
+                scroll_position = random.randint(int(min_position), 
+                                                 int(max_position))
                 
                 self.driver.execute_script(f"window.scrollTo(0, {scroll_position});")
                 time.sleep(random.uniform(0.5, 2.0))

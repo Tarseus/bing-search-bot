@@ -5,10 +5,14 @@ def main():
     driver = None
     try:
         usr_config = read_config('.\\config\\user_config.json')
-        driver = ChromeDriver()
+        mobile_emulation = {
+            "deviceName": "Nexus 5"
+        }
+        driver = ChromeDriver(executable_path=usr_config['chromedriver_path'], 
+                              mobile_emulation=mobile_emulation)
         driver.login(usr_config)
         driver.open_browser(url="http://cn.bing.com")
-        random_lines = read_random_lines('.\\data\\queries.txt', num_lines=10)
+        random_lines = read_random_lines('.\\data\\queries.txt', num_lines=20)
         
         for line in random_lines:
             driver.search(line, usr_config)
